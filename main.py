@@ -1,7 +1,3 @@
-#need remove 
-#need save file
-
-
 from PyQt5 import QtWidgets, QtGui, QtCore
 from cryptography.fernet import Fernet
 from cryptography.hazmat.primitives import hashes
