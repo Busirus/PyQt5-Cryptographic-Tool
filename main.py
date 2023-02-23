@@ -69,18 +69,19 @@ class CryptoApp(QtWidgets.QMainWindow):
         
         
     def browse_file(self):
-        #Open a file dialog to browse for the file or folder to encrypt/decrypt
-        options = QtWidgets.QFileDialog.Options()
-        options |= QtWidgets.QFileDialog.DontUseNativeDialog
-        browse_type, _ = QtWidgets.QInputDialog.getItem(self, "Select browse type", "Select browse type:", ["File", "Folder"], 0, False)
-        if browse_type == "File":
-            file_path, _ = QtWidgets.QFileDialog.getOpenFileName(self, "Select file", "", "All Files (*)", options=options)
-            if file_path:
-                self.filename_field.setText(file_path)
-        elif browse_type == "Folder":
-            dir_path = QtWidgets.QFileDialog.getExistingDirectory(self, "Select folder", "", options=options)
-            if dir_path:
-                self.filename_field.setText(dir_path)
+        # Open a file dialog to browse for the file or folder to encrypt/decrypt
+        browse_type, ok = QtWidgets.QInputDialog.getItem(self, "Select browse type", "Select browse type:", ["File", "Folder"], 0, False)
+        if ok:
+            options = QtWidgets.QFileDialog.Options()
+            options |= QtWidgets.QFileDialog.DontUseNativeDialog
+            if browse_type == "File":
+                file_path, _ = QtWidgets.QFileDialog.getOpenFileName(self, "Select file", "", "All Files (*)", options=options)
+                if file_path:
+                    self.filename_field.setText(file_path)
+            elif browse_type == "Folder":
+                dir_path = QtWidgets.QFileDialog.getExistingDirectory(self, "Select folder", "", options=options)
+                if dir_path:
+                    self.filename_field.setText(dir_path)
 
 
     def browse_savedir(self):
